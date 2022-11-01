@@ -1,0 +1,29 @@
+$primary:hsl(220, 98%, 61%);
+$checkBg:linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+
+/*Light Theme Colors*/
+$dayVLightGray:hsl(0, 0%, 98%);
+
+$dayLightGrayBlue:hsl(233, 11%, 84%);
+$dayGrayBlue:hsl(236, 9%, 61%);
+$dayVGrayBlue:hsl(235, 19%, 35%);
+
+/*Dark Theme Colors*/
+$nightVBlue:hsl(235, 21%, 11%);
+$nightVDesBlue:hsl(235, 24%, 19%);
+$nightGrayBlue:hsl(234, 11%, 52%);
+$nightVGrayBlue:hsl(233, 14%, 35%);
+$nightExtrGrayBlue:hsl(237, 14%, 26%);
+
+/*shared theme colour*/
+$sharedVGrayBlue:hsl(236, 33%, 92%);
+
+$fontFamily:"Josefin Sans",sans-serif;
+
+body{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+
