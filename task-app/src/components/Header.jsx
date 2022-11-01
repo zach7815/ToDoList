@@ -1,10 +1,18 @@
+import React from 'react';
+import sunIcon from '../images/icon-sun.svg'
+
 
 const Header = ()=>{
     return (
-        <div className="Header">
+        <div className="header">
+        <div className='heading'>
         <h1>to do</h1>
-        <img src="./public/images/icon-sun.svg" alt="sun icon activate light mode"/>
-        <input type="text" placeholder="Create a new todo..." maxLength="50"/>
+        <img src={sunIcon} alt="toggle moon/darkmode"/>
+        </div>
+        <div className='inputWrap'>
+        < input type="text" placeholder="Create a new todo..." maxLength="50"/>
+        <span className="innerCircle"></span>
+        </div>
         </div>
     )
 }
