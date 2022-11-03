@@ -1,5 +1,5 @@
 $primary:hsl(220, 98%, 61%);
-$checkBg:linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+$checkBg:linear-gradient( 45deg,#57ddff,#c058f3);
 
 /*Light Theme Colors*/
 $dayVLightGray:hsl(0, 0%, 98%);
@@ -31,7 +31,8 @@ $inputCircle:false
   width: 20px;
   border-style: solid;
   border-width: 1px;
-  border-color: $border-color;
+  border-image: $checkBg;
+  border-image-slice:10;
   border-radius: 50%;
 
 
@@ -91,6 +92,7 @@ background-size: cover;
 
 .inputWrap{
   position: relative;
+
   input{
     background-color: $nightVGrayBlue;
     border: none;
@@ -137,7 +139,7 @@ background-size: cover;
     .innerCircle{
       justify-self: flex-start;
       align-self:center;
-      @include circle($nightGrayBlue)
+      @include circle;
 
     }
 
@@ -189,11 +191,12 @@ background-size: cover;
 background-color:$nightVGrayBlue;
 color:$dayLightGrayBlue;
 display: flex;
-padding: 1rem 0 1rem 0;
 justify-content: space-around;
-width: 49.8%;;
-max-width: 559.35px;
+padding: 1rem 0 1rem 0;
+width: 49.9%;
+max-width: 567.583px;
 border-radius: 0 0 5px 5px;
+display:none;
 span:hover{
  color:$primary;
 }
@@ -219,6 +222,9 @@ span:hover{
     justify-content: center;
     top:3rem;
   gap:27rem;
+  }
+  .icon{
+    cursor: pointer;
   }
 
   .inputWrap{
@@ -269,6 +275,8 @@ span:hover{
 .Toggles{
   display: none;
 }
-
+.deskToggle{
+  display: flex;
+}
 
 }
