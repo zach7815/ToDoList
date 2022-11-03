@@ -1,5 +1,7 @@
 import React from "react";
 import ListItem from "./ListItem";
+import ItemCount from './ItemCount';
+import DesktopFilters from "./DesktopFilters";
 
 const ListContainer = ()=>{
     return(
@@ -9,6 +11,8 @@ const ListContainer = ()=>{
         <ListItem/>
         <ListItem/>
         <ListItem/>
+        <ItemCount/>
+        <DesktopFilters/>
         </div>
     )
 }

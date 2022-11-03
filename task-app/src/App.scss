@@ -11,8 +11,11 @@ $dayVGrayBlue:hsl(235, 19%, 35%);
 /*Dark Theme Colors*/
 $nightVBlue:hsl(235, 21%, 11%);
 $nightVDesBlue:hsl(235, 24%, 19%);
+//circle, crosses and dividing line accent color
 $nightGrayBlue:hsl(234, 11%, 52%);
+// todolist bg color
 $nightVGrayBlue:hsl(233, 14%, 35%);
+// background color main section
 $nightExtrGrayBlue:hsl(237, 14%, 26%);
 
 /*shared theme colour*/
@@ -22,20 +25,26 @@ $fontFamily:"Josefin Sans",sans-serif;
 
 @mixin circle(
 $border-color:$dayLightGrayBlue,
-$position:absolute,
-$top:6.85rem,
-$left:3rem
-
+$inputCircle:false
 ) {
-  position:$position;
-  top:$top;
-  left:$left;
   height: 20px;
   width: 20px;
   border-style: solid;
   border-width: 1px;
   border-color: $border-color;
   border-radius: 50%;
+
+
+  @if $inputCircle {
+    position:absolute;
+  top:4.85rem;
+  left:3rem;
+  }
+  @else{
+    position: initial;
+  cursor: pointer;
+  }
+
 }
 
 
@@ -43,7 +52,7 @@ body{
   margin:0;
   padding:0;
   box-sizing: border-box;
-  background-color: black;
+  background-color: $nightExtrGrayBlue;
   font-family: $fontFamily;
 }
 
@@ -60,6 +69,7 @@ body{
     color: $dayVLightGray;
     text-transform: uppercase;
   }
+
 
   .heading{
     display: flex;
@@ -84,17 +94,17 @@ background-size: cover;
   input{
     background-color: $nightVGrayBlue;
     border: none;
-    color:$dayLightGrayBlue;
+    color:$dayLightGrayBlue;;
     border-radius: 5px;
     position: relative;
-    padding-left: 2.5rem;
-    left: 2.5rem;
-    top:6rem;
-    width: 70%;
+    padding-left: 3.5rem;
+    left: 2rem;
+    top:4rem;
+    width: 67%;
     line-height: 3rem;
   }
 .innerCircle{
-  @include circle
+  @include circle($nightGrayBlue, true)
 }
 }
 }
@@ -105,43 +115,89 @@ background-size: cover;
   justify-content: center;
   align-items: center;
   width: 78%;
-
-
+  position: relative;
+  bottom:2rem;
   color:$dayLightGrayBlue;
+
   .item{
+    background:$nightVGrayBlue;
     display: flex;
     justify-content:flex-start;
    align-content: center;
-    background:$nightVGrayBlue;
     width: 100%;
     position: relative;
     padding-left: 1rem;
-    gap: 3rem;
+    gap: 1rem;
+    border-bottom: solid 1px $nightGrayBlue;
 
 
     &.item:first-child{
       border-radius: 5px 5px 0 0;
     }
     .innerCircle{
+      justify-self: flex-start;
       align-self:center;
-      @include circle($dayLightGrayBlue,initial)
+      @include circle($nightGrayBlue)
 
     }
 
     .cross{
-      height: 20px;
-      color:$dayLightGrayBlue;
+      fill:$nightGrayBlue;
+      height: auto;
+      width: auto;
       align-self: center;
-
+      position: relative;
+      left:4rem;
+      cursor: pointer;
     }
 
+  }
+  .itemCount{
+    width: 100%;
+    background:$nightVGrayBlue;
+    justify-content: flex-start;
+    padding:1rem 0 1rem 1rem;
+    text-transform: capitalize;
+    display: flex;
+    gap:4rem;
+    border-radius: 0 0 5px 5px;
+    .clearBtn{
+      cursor: pointer;
+    }
+  }
+}
 
-
-
+.Toggles{
+  background:$nightVGrayBlue;
+  color:$dayLightGrayBlue;
+  display: flex;
+  justify-content: space-around;
+  width: 74%;
+  border-radius: 5px;
+  padding: 1rem;
+  span:hover{
+    color:$primary;
+    cursor: pointer;
+  }
+  span::active{
+    color:$primary;
 
   }
 }
 
+.deskToggle{
+background-color:$nightVGrayBlue;
+color:$dayLightGrayBlue;
+display: flex;
+padding: 1rem 0 1rem 0;
+justify-content: space-around;
+width: 49.8%;;
+max-width: 559.35px;
+border-radius: 0 0 5px 5px;
+span:hover{
+ color:$primary;
+}
+}
 
 
 .attribution{
@@ -150,6 +206,69 @@ background-size: cover;
   font-size: 0.75rem;
   text-align: center;
   bottom:2rem;
+  width: 50%;
+  a{
+    color: $primary;
+  }
+}
+
+@media screen and (min-width:1439px) {
+.header{
+  background-image: url('./images/bg-desktop-dark.jpg');
+  .heading{
+    justify-content: center;
+    top:3rem;
+  gap:27rem;
+  }
+
+  .inputWrap{
+    display: flex;
+    justify-content: center;
+    input{
+      width: 35%;
+      max-width: 511px;
+      left: 0%;
+      right:1rem;
+    }
+    .innerCircle{
+      left: 29rem;
+    }
+}
+
+}
+.listContent{
+.item{
+  gap:1rem;
+
+  .innerCircle{
+    border-width: 2px;
+  }
+
+  .cross{
+    left:20rem;
+    display:none;
+  }
+}
+
+.item:hover{
+  .cross{
+    display: block;
+  }
 }
 
 
+  .item{
+    width: 48.5%;
+    max-width:552.317px
+  }
+  .itemCount{
+    display:none;
+  }
+}
+
+.Toggles{
+  display: none;
+}
+
+
+}

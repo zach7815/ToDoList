@@ -4,7 +4,7 @@ const ItemCount= ()=>{
     return(
         <div className="itemCount">
             <span>5 items left</span>
-            <span>clear completed</span>
+            <span className="clearBtn">clear completed</span>
         </div>
     )
 };
