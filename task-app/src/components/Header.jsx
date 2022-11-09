@@ -10,7 +10,8 @@ const Header = ()=>{
         </div>
         <div className='inputWrap'>
         < input type="text" placeholder="Create a new todo..." maxLength="50"/>
-        <span className="innerCircle"></span>
+
+        {/* <span className="innerCircle"></span> */}
         </div>
         </div>
     )

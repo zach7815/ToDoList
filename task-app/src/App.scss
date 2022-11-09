@@ -105,6 +105,9 @@ background-size: cover;
     width: 67%;
     line-height: 3rem;
   }
+
+
+
 .innerCircle{
   @include circle($nightGrayBlue, true)
 }
@@ -162,10 +165,12 @@ background-size: cover;
       -moz-appearance: none;
       appearance: none;
       outline: 0;
-      border: 1px solid white;
-      color: white;
+      border: 1px solid;
+      background: linear-gradient(45deg, purple, orange) 1;
+
     }
 
+// sets tick element
 
     input[type="checkbox"]:after {
       content: ' ';
