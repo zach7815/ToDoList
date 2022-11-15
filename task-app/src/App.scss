@@ -139,7 +139,11 @@ background-size: cover;
     gap: 1rem;
     border-bottom: solid 1px $nightGrayBlue;
 
-
+.checkbox{
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
 
     .checkbox-round{
       width: 2em;
@@ -154,6 +158,9 @@ background-size: cover;
       top:0.5rem;
     }
 
+    input[type="checkbox"]:hover{
+      border-color:#c058f3;
+    }
     input[type="checkbox"]:checked {
       background: $checkBg;
       color: white;
@@ -165,8 +172,7 @@ background-size: cover;
       -moz-appearance: none;
       appearance: none;
       outline: 0;
-      border: 1px solid;
-      background: linear-gradient(45deg, purple, orange) 1;
+      border: 1px solid white;
 
     }
 
@@ -189,6 +195,10 @@ background-size: cover;
       display: block;
     }
 
+    // sets strikethrough for item
+    input[type=checkbox]:checked+p{
+      text-decoration: line-through;
+    }
 
 
     &.item:first-child{
@@ -249,8 +259,12 @@ width: 49.9%;
 max-width: 567.583px;
 border-radius: 0 0 5px 5px;
 display:none;
-span:hover{
+.filterBtn:hover{
  color:$primary;
+ cursor: pointer;
+}
+.clearBtn{
+  cursor: pointer;
 }
 }
 
@@ -303,7 +317,7 @@ span:hover{
   }
 
   .cross{
-    left:20rem;
+    left:19rem;
     display:none;
   }
 }
