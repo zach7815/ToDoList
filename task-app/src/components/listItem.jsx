@@ -9,6 +9,7 @@ const ListItem = () =>{
         <p className="itemContent">Dummy to do item</p>
         </label>
         <a href="null"
+        className="crossContainer"
         onClick={(e)=>e.preventDefault()}
         >
         <svg className="cross"
