@@ -1,5 +1,6 @@
 import React, {useEffect,useState} from 'react';
-import {ReactComponent as ReactLogo} from '../images/icon-moon.svg';
+import {ReactComponent as ReactLogoMoon} from '../images/icon-moon.svg';
+import {ReactComponent as ReactLogoSun} from '../images/icon-sun.svg';
 
 
 
@@ -24,15 +25,15 @@ useEffect(()=>{
       itemCount.classList.add("darkmodeContent");
       toggle.classList.add("toggleDark");
       input.classList.add("darkmodeInput");
-      bgImage.classList.add("darkmodeImage");
       attribute.classList.add("toggleDark");
+      bgImage.style.backgroundImage=`url('http://localhost:3000/static/media/bg-desktop-dark.73e47dbb723ebc772ef0.jpg')`
+
 
 
       items.forEach(element => {
         element.classList.add("darkmodeContent");
       });
 
-    //   bgImage.style.backgroundImage="url('./images/bg-desktop-dark.jpg')"
     } else {
       body.classList.remove('darkModeBody');
       input.classList.remove("darkmodeInput");
@@ -41,11 +42,11 @@ useEffect(()=>{
       itemCount.classList.remove("darkmodeContent");
       toggle.classList.remove("toggleDark");
       attribute.classList.remove("toggleDark");
-
+      bgImage.style.backgroundImage=`url('http://localhost:3000/static/media/bg-desktop-light.3508d620efd5a52bb4ce.jpg')`;
       items.forEach(element => {
         element.classList.remove("darkmodeContent");
       });
-    //   bgImage.style.backgroundImage="url('./images/bg-desktop-light.jpg')"
+
     }
 
 }, [darkMode])
@@ -61,7 +62,7 @@ useEffect(()=>{
             darkMode === false ? setDarkMode(true) : setDarkMode(false)
             }}
          >
-        <ReactLogo/>
+        <ReactLogoMoon/>
         </a>
         </div>
         <div className='inputWrap'>
