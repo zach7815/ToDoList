@@ -23,16 +23,28 @@ $sharedVGrayBlue:hsl(236, 33%, 92%);
 
 $fontFamily:"Josefin Sans",sans-serif;
 
+/* background images variables*/
+$mobDark:url('./images/bg-mobile-dark.jpg');
+$mobLight:url('./images/bg-mobile-light.jpg');
+$deskDark:url('./images/bg-desktop-dark.jpg');
+$deskLight:url('./images/bg-desktop-light.jpg');
+
+@mixin darkMode($bgColor:$nightVDesBlue){
+  background-color:$bgColor;
+  color:$dayVLightGray;
+
+}
+
+
 @mixin circle(
 $border-color:$dayLightGrayBlue,
 $inputCircle:false
 ) {
-  height: 20px;
-  width: 20px;
+  border-color: $border-color;
+  height: 1.5em;
+  width: 1.5em;
   border-style: solid;
   border-width: 1px;
-  border-image: $checkBg;
-  border-image-slice:10;
   border-radius: 50%;
 
 
@@ -53,8 +65,11 @@ body{
   margin:0;
   padding:0;
   box-sizing: border-box;
-  background-color: $nightExtrGrayBlue;
+  background-color:$dayVLightGray;
+
   font-family: $fontFamily;
+
+
 }
 
 .App{
@@ -72,31 +87,37 @@ body{
   }
 
 
+
   .heading{
     display: flex;
     justify-content: space-between;
     padding: 0 1rem 0 1rem;
     position: relative;
     top: 2rem;
-    img{
-      height: 50%;
+    a {
+      position: relative;
+      z-index: 2;
       cursor: pointer;
-    }
+      }
+
   }
   margin:0;
 width: 100%;
 height: 200px;
-background-image: url('./images/bg-mobile-dark.jpg');
+// background-image: $mobLight;
 background-repeat: no-repeat;
 background-size: cover;
 
 .inputWrap{
   position: relative;
 
+
+
+
   input{
-    background-color: $nightVGrayBlue;
+    background-color: $dayVLightGray;
     border: none;
-    color:$dayLightGrayBlue;;
+    color:$dayVGrayBlue;
     border-radius: 5px;
     position: relative;
     padding-left: 3.5rem;
@@ -108,9 +129,7 @@ background-size: cover;
 
 
 
-.innerCircle{
-  @include circle($nightGrayBlue, true)
-}
+
 }
 }
 
@@ -119,17 +138,17 @@ background-size: cover;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 78%;
+  width: max-content;
   position: relative;
   bottom:2rem;
-  color:$dayLightGrayBlue;
+  color:$dayVGrayBlue;
 
 
 
 
 
   .item{
-    background:$nightVGrayBlue;
+    background:$dayVLightGray;
     display: flex;
     justify-content:flex-start;
    align-content: center;
@@ -143,19 +162,22 @@ background-size: cover;
   display: flex;
   justify-content: space-around;
   gap: 1rem;
+  p{
+    cursor: pointer;
+  }
 }
 
     .checkbox-round{
       width: 2em;
       height: 2em;
       border-radius: 50%;
-      border: 1px solid #ddd;
       appearance: none;
       -webkit-appearance: none;
       outline: none;
       cursor: pointer;
       position: relative;
       top:0.5rem;
+      border: 1px solid hsl(236, 9%, 61%);
     }
 
     input[type="checkbox"]:hover{
@@ -166,15 +188,6 @@ background-size: cover;
       color: white;
     }
 
-    input[type="checkbox"] {
-      cursor: pointer;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      outline: 0;
-      border: 1px solid white;
-
-    }
 
 // sets tick element
 
@@ -211,29 +224,30 @@ background-size: cover;
       width: auto;
       align-self: center;
       position: relative;
-      left:4rem;
-      cursor: pointer;
+      left:3rem;
+      top:1rem;
     }
 
   }
   .itemCount{
     width: 100%;
-    background:$nightVGrayBlue;
+    background:$dayVLightGray;
     justify-content: flex-start;
     padding:1rem 0 1rem 1rem;
     text-transform: capitalize;
     display: flex;
     gap:4rem;
     border-radius: 0 0 5px 5px;
-    .clearBtn{
+    a {
       cursor: pointer;
-    }
+      }
+
   }
 }
 
 .Toggles{
-  background:$nightVGrayBlue;
-  color:$dayLightGrayBlue;
+  background:$dayVLightGray;
+  color:$dayVGrayBlue;
   display: flex;
   justify-content: space-around;
   width: 74%;
@@ -250,12 +264,14 @@ background-size: cover;
 }
 
 .deskToggle{
-background-color:$nightVGrayBlue;
-color:$dayLightGrayBlue;
+background-color:$dayVLightGray;
+
+color:$dayVGrayBlue;
 display: flex;
 justify-content: space-around;
 padding: 1rem 0 1rem 0;
-width: 49.9%;
+width: 100%;
+gap:2rem;
 max-width: 567.583px;
 border-radius: 0 0 5px 5px;
 display:none;
@@ -271,7 +287,7 @@ display:none;
 
 .attribution{
   position: absolute;
-  color: $sharedVGrayBlue;
+  color: $dayVGrayBlue;
   font-size: 0.75rem;
   text-align: center;
   bottom:2rem;
@@ -283,14 +299,11 @@ display:none;
 
 @media screen and (min-width:1439px) {
 .header{
-  background-image: url('./images/bg-desktop-dark.jpg');
+  background-image:$deskLight;
   .heading{
     justify-content: center;
     top:3rem;
   gap:27rem;
-  }
-  .icon{
-    cursor: pointer;
   }
 
   .inputWrap{
@@ -302,36 +315,40 @@ display:none;
       left: 0%;
       right:1rem;
     }
-    .innerCircle{
-      left: 29rem;
-    }
+
+
 }
 
 }
 .listContent{
-.item{
-  gap:1rem;
-
-  .innerCircle{
-    border-width: 2px;
-  }
-
-  .cross{
-    left:19rem;
-    display:none;
-  }
-}
-
-.item:hover{
-  .cross{
-    display: block;
-  }
-}
-
-
+  box-shadow: 0px 2px 15px 0 black;
+border-radius: 5px;
   .item{
-    width: 48.5%;
-    max-width:552.317px
+    width: 34rem;
+    max-width:552.317px;
+    display: flex;
+justify-content: flex-start;
+gap: 1rem;
+
+
+
+.crossContainer{
+  position: relative;
+  display: none;
+  top:1rem;
+  left:19rem;
+  .cross{
+    top:0;
+    left:0;
+  }
+}
+
+&:hover{
+  a{
+  display: block;
+  }
+}
+
   }
   .itemCount{
     display:none;
@@ -346,3 +363,38 @@ display:none;
 }
 
 }
+
+
+/* classes for Lightmode*/
+
+.darkModeBody{
+  background-color:$nightVBlue;
+
+}
+.header{
+
+  .inputWrap{
+    .darkmodeInput{
+      background-color: hsl(235, 24%, 19%);
+
+      color:$dayVLightGray;
+    }
+  }
+
+}
+
+.listContent{
+  .darkmodeContent{
+    background-color:$nightVDesBlue;
+    color:$dayVLightGray;
+
+  }
+
+}
+
+.toggleDark{
+ @include darkMode(transparent)
+}
+
+
+
