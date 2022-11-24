@@ -6,7 +6,7 @@ import ListContainer from './components/ListContainer';
 import ToggleState from './components/ToggleState';
 
 
-function App() {
+function App({item}) {
   return (
     <div className="App">
 <Header/>

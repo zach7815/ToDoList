@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import {ReactComponent as ReactLogoMoon} from '../images/icon-moon.svg';
 import {ReactComponent as ReactLogoSun} from '../images/icon-sun.svg';
+import TaskInput from './TaskInput';
 import useDarkMode from '../useDarkMode';
 
 
 
 const Header = ()=>{
-const [darkMode, setDarkMode]=useState(false);
+const [darkMode, setDarkMode]=useState(false)
+
 useDarkMode(darkMode)
 
     return (
@@ -17,16 +19,11 @@ useDarkMode(darkMode)
          className='.icon'
          onClick={(e)=>{
             e.preventDefault();
-            darkMode === false ? setDarkMode(true) : setDarkMode(false)
-            }}
-         >
-
+            darkMode === false ? setDarkMode(true) : setDarkMode(false)}}>
         {darkMode===false?<ReactLogoMoon/>:<ReactLogoSun/>}
         </a>
         </div>
-        <div className='inputWrap'>
-        <input className='itemInput' type="text" placeholder="Create a new todo..." maxLength="50"/>
-        </div>
+            <TaskInput/>
         </div>
     )
 }

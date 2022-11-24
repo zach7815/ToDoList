@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 
-const ListItem = () =>{
+const ListItem = ({itemText, checked }) =>{
+    const defaultChecked=checked?checked:false
+const [isChecked, setIsChecked]=useState(defaultChecked)
+
+
+
+
     return(
         <div className="item">
         <label className="checkbox">
-        <input className="checkbox-round" type="checkbox"/>
-        <p className="itemContent">Dummy to do item</p>
+        <input
+        className="checkbox-round"
+        type="checkbox"
+        checked={isChecked}
+
+        onChange={() => setIsChecked((prev) => !prev)}
+
+         />
+        <p className="itemContent">{itemText}</p>
         </label>
         <a href="null"
         className="crossContainer"
