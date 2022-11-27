@@ -6,7 +6,7 @@ import useDarkMode from '../useDarkMode';
 
 
 
-const Header = ()=>{
+const Header = ({inputText, setInputText, data, updateData})=>{
 const [darkMode, setDarkMode]=useState(false)
 
 useDarkMode(darkMode)
@@ -23,7 +23,10 @@ useDarkMode(darkMode)
         {darkMode===false?<ReactLogoMoon/>:<ReactLogoSun/>}
         </a>
         </div>
-            <TaskInput/>
+            <TaskInput inputText={inputText}
+            setInputText={setInputText}
+             newItem={data}
+             setNewItem={updateData}/>
         </div>
     )
 }

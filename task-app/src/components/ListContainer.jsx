@@ -1,23 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import ListItem from "./ListItem";
 import ItemCount from './ItemCount';
 import DesktopFilters from "./DesktopFilters";
-import data from "../data.json"
 
 
-const ListContainer = ()=>{
-const [toDoList,setToDoList]= useState(data);
+
+const ListContainer = ({toDo,updateData})=>{
+    console.log(toDo)
     return(
         <div className="listContent">
-        {toDoList.map(item=>{
+
+        {toDo.map(item=>{
             return(
-                <ListItem key={item.id} itemText={item.task} checked={item.complete} />
+                <ListItem key={item.id}
+                itemText={item.text}
+                checked={item.complete}
+                updateItem={updateData} />
             )
         })
-
         }
         <ItemCount/>
-        <DesktopFilters/>
+        {toDo.length===0?"":<DesktopFilters toDo={toDo}/>}
+
         </div>
     )
 }

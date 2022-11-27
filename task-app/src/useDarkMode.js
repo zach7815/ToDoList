@@ -4,24 +4,28 @@ import  {useEffect} from "react";
 
 const useDarkMode=(isDark)=>{
     useEffect(()=>{
-        const body = document.body
-        const items=document.querySelectorAll(".item");
-        const deskToggle= document.querySelector(".deskToggle");
-        const input= document.querySelector("input.itemInput");
-        const itemCount =document.querySelector(".itemCount");
-        const toggle =document.querySelector(".Toggles");
-        const attribute=document.querySelector(".attribution");
-        const bgImage = document.querySelector('.header');
+
+
+
+      const body = document.body
+      const items=document.querySelectorAll(".item");
+      const input= document.querySelector("input.itemInput");
+      const itemCount =document.querySelector(".itemCount");
+      const toggle =document.querySelector(".Toggles");
+      const attribute=document.querySelector(".attribution");
+      const bgImage = document.querySelector('.header');
+
 
 
 
         if( isDark === true ) {
+
           body.classList.add('darkModeBody')
-          deskToggle.classList.add("darkmodeContent");
           itemCount.classList.add("darkmodeContent");
           toggle.classList.add("toggleDark");
           input.classList.add("darkmodeInput");
           attribute.classList.add("toggleDark");
+
 
          if(window.screen.width<400){
           // bgImage.style.backgroundImage=`url("./images/bg-mobile-dark.jpg")`
@@ -39,7 +43,6 @@ const useDarkMode=(isDark)=>{
         } else {
           body.classList.remove('darkModeBody');
           input.classList.remove("darkmodeInput");
-          deskToggle.classList.remove("darkmodeContent");
           input.classList.remove("darkmodeContent");
           itemCount.classList.remove("darkmodeContent");
           toggle.classList.remove("toggleDark");

@@ -1,9 +1,11 @@
 import React from "react";
 
-const DesktopFilters=()=>{
+const DesktopFilters=({toDo})=>{
+    console.log(toDo);
     return(
-        <div className="deskToggle">
-        <span> 5 items left</span>
+        <div className="deskToggle item">
+        {toDo.length===1?<span> 1 item left</span>:
+        <span> {toDo.length} items left</span>}
         <span className="filterBtn">All</span>
         <span className="filterBtn">Active</span>
         <span className="filterBtn">Completed</span>

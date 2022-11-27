@@ -1,26 +1,32 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-const TaskInput= ()=>{
-    const [item, setItem]=useState([]);
+const TaskInput= ({inputText, setInputText, newItem, setNewItem})=>{
 
-const handleSubmit= (event)=>{
-    const form =document.querySelector(".inputWrap");
-    event.preventDefault()
-    setItem((event)=>{
+ const inputTextHandler = (e)=>{
+    setInputText(e.target.value);
+ }
 
-        const items=[];
-        items.push()
-    })
-    alert(item)
-    form.reset()
+const handleSubmit= (e)=>{
+
+
+    e.preventDefault()
+    setNewItem([...newItem,
+        {
+            id:Math.random()*1000,
+            text:inputText,
+            complete:false
+        }
+    ])
+    setInputText('')
 }
-console.log(item)
+
 
     return (
-        <form onSubmit={handleSubmit} className='inputWrap'>
+        <form   onSubmit={handleSubmit} className='inputWrap'>
         <input
          className='itemInput'
-         onChange={event=>setItem(event.target.value)}
+         value={inputText}
+         onChange={inputTextHandler}
           type="text"
           placeholder="Create a new todo..."
           maxLength="50"/>

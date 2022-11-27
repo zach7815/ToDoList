@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 
 
-const ListItem = ({itemText, checked }) =>{
-    const defaultChecked=checked?checked:false
-const [isChecked, setIsChecked]=useState(defaultChecked)
-
+const ListItem = ({itemText, checked, updateData}) =>{
+    const defaultChecked=checked?checked:false;
+    const [isChecked, setIsChecked]=useState(defaultChecked);
 
 
 

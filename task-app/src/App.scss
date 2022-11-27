@@ -61,6 +61,8 @@ $inputCircle:false
 }
 
 
+
+
 body{
   margin:0;
   padding:0;
@@ -148,7 +150,6 @@ background-size: cover;
 
 
   .item{
-    background:$dayVLightGray;
     display: flex;
     justify-content:flex-start;
    align-content: center;
@@ -156,6 +157,7 @@ background-size: cover;
     position: relative;
     padding-left: 1rem;
     gap: 1rem;
+    background-color:$dayVLightGray ;
     border-bottom: solid 1px $nightGrayBlue;
 
 .checkbox{
@@ -224,14 +226,14 @@ background-size: cover;
       width: auto;
       align-self: center;
       position: relative;
-      left:3rem;
+      margin-left: auto;
+      padding-right: 1rem;
       top:1rem;
     }
 
   }
   .itemCount{
     width: 100%;
-    background:$dayVLightGray;
     justify-content: flex-start;
     padding:1rem 0 1rem 1rem;
     text-transform: capitalize;
@@ -246,8 +248,6 @@ background-size: cover;
 }
 
 .Toggles{
-  background:$dayVLightGray;
-  color:$dayVGrayBlue;
   display: flex;
   justify-content: space-around;
   width: 74%;
@@ -264,11 +264,9 @@ background-size: cover;
 }
 
 .deskToggle{
-background-color:$dayVLightGray;
-
-color:$dayVGrayBlue;
 display: flex;
-justify-content: space-around;
+justify-content: space-around!important;
+border-bottom: none!important;
 padding: 1rem 0 1rem 0;
 width: 100%;
 gap:2rem;
@@ -339,7 +337,8 @@ gap: 1rem;
   position: relative;
   display: none;
   top:1rem;
-  left:19rem;
+  margin-left:auto;
+  padding-right:1rem;
   .cross{
     top:0;
     left:0;
@@ -398,6 +397,5 @@ gap: 1rem;
 .toggleDark{
  @include darkMode(transparent)
 }
-
 
 
