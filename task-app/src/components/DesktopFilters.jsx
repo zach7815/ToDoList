@@ -1,7 +1,6 @@
 import React from "react";
 
 const DesktopFilters=({toDo})=>{
-    console.log(toDo);
     return(
         <div className="deskToggle item">
         {toDo.length===1?<span> 1 item left</span>:
