@@ -5,12 +5,11 @@ import DesktopFilters from "./DesktopFilters";
 
 
 
-const ListContainer = ({toDo,setToDo})=>{
-    console.log(toDo)
+const ListContainer = ({toDo,setToDo, setStatus, filteredTodos})=>{
     return(
         <div className="listContent">
 
-        {toDo.map(item=>{
+        {filteredTodos.map(item=>{
             return(
                 <ListItem
                 key={item.id}
@@ -19,12 +18,18 @@ const ListContainer = ({toDo,setToDo})=>{
                 checked={item.complete}
                 toDo={item}
                 toDos={toDo}
-               setToDo={setToDo} />
+               setToDo={setToDo}
+                />
             )
         })
         }
         <ItemCount/>
-        {toDo.length===0?"":<DesktopFilters toDo={toDo}/>}
+
+        <DesktopFilters toDo={toDo}
+         setToDo={setToDo}
+         setStatus={setStatus}
+         filteredTodos={filteredTodos}
+         />
 
         </div>
     )

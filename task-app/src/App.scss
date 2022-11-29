@@ -397,5 +397,7 @@ gap: 1rem;
 .toggleDark{
  @include darkMode(transparent)
 }
-
+.completed{
+  display: none!important;
+}
 

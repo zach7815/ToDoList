@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 
-const ListItem = ({itemText, toDo, checked, toDos, setToDo}) =>{
+const ListItem = ({itemText, toDo, checked, toDos, setToDo, id}) =>{
     const defaultChecked=checked?checked:false;
     const [isChecked, setIsChecked]=useState(defaultChecked);
 
@@ -11,15 +11,28 @@ const ListItem = ({itemText, toDo, checked, toDos, setToDo}) =>{
        setToDo(toDos.filter(el=>el.id!==toDo.id))
     }
 
+    const toggleComplete= ()=>{
+      setToDo(toDos.map(item=>{
+        if(item.id===toDo.id){
+            return{
+                ...item,
+                complete:!item.complete,
+            }
+        }
+        return item
+
+      }))
+    }
+
     return(
-        <div className="item">
+        <div className="item" id={id} >
         <label className="checkbox">
         <input
         className="checkbox-round"
         type="checkbox"
         checked={isChecked}
-
         onChange={() => setIsChecked((prev) => !prev)}
+        onClick={toggleComplete}
 
          />
         <p className="itemContent">{itemText}</p>
