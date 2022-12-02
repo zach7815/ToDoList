@@ -60,13 +60,14 @@ $inputCircle:false
 
 }
 
-
+html{
+  box-sizing: border-box;
+}
 
 
 body{
   margin:0;
   padding:0;
-  box-sizing: border-box;
   background-color:$dayVLightGray;
 
   font-family: $fontFamily;
@@ -136,26 +137,25 @@ background-size: cover;
 }
 
 .listContent{
+  box-shadow: 0px 2px 15px 0 black;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: max-content;
+  width: 80%;
   position: relative;
   bottom:2rem;
+  background-color: $dayVLightGray;
   color:$dayVGrayBlue;
-
-
+  border-radius: 5px;
 
 
 
   .item{
-    display: flex;
     justify-content:flex-start;
    align-content: center;
     width: 100%;
     position: relative;
-    padding-left: 1rem;
     gap: 1rem;
     background-color:$dayVLightGray ;
     border-bottom: solid 1px $nightGrayBlue;
@@ -220,6 +220,11 @@ background-size: cover;
       border-radius: 5px 5px 0 0;
     }
 
+    .crossContainer{
+      margin-left:auto;
+      padding-right:1rem;
+    }
+
     .cross{
       fill:$nightGrayBlue;
       height: auto;
@@ -233,13 +238,11 @@ background-size: cover;
 
   }
   .itemCount{
-    width: 100%;
-    justify-content: flex-start;
-    padding:1rem 0 1rem 1rem;
-    text-transform: capitalize;
+   width: 100%;
     display: flex;
-    gap:4rem;
-    border-radius: 0 0 5px 5px;
+    justify-content: space-around;
+    gap: 1rem;
+    padding: 1rem 0 1rem 1rem;
     a {
       cursor: pointer;
       }
@@ -250,7 +253,7 @@ background-size: cover;
 .Toggles{
   display: flex;
   justify-content: space-around;
-  width: 74%;
+  width: 68%;
   border-radius: 5px;
   padding: 1rem;
   span:hover{
@@ -267,7 +270,7 @@ background-size: cover;
 display: flex;
 justify-content: space-around!important;
 border-bottom: none!important;
-padding: 1rem 0 1rem 0;
+padding: 1rem 0 1rem 1rem;
 width: 100%;
 gap:2rem;
 max-width: 567.583px;
@@ -319,11 +322,16 @@ display:none;
 
 }
 .listContent{
-  box-shadow: 0px 2px 15px 0 black;
 border-radius: 5px;
+width: max-content;
 margin: 0 0 5rem 0;
 position: relative;
 z-index: 5;
+ &>*{
+    padding-left: 1rem;
+  }
+
+
   .item{
     width: 34rem;
     max-width:552.317px;
@@ -337,8 +345,7 @@ gap: 1rem;
   position: relative;
   display: none;
   top:1rem;
-  margin-left:auto;
-  padding-right:1rem;
+
   .cross{
     top:0;
     left:0;
@@ -353,16 +360,14 @@ gap: 1rem;
 
   }
   .itemCount{
-    display:none;
+    display:none!important;
   }
 }
 
 .Toggles{
   display: none;
 }
-.deskToggle{
-  display: flex;
-}
+
 
 }
 
@@ -401,3 +406,6 @@ gap: 1rem;
   display: none!important;
 }
 
+.flex{
+  display:flex;
+}

@@ -25,7 +25,7 @@ const ListItem = ({itemText, toDo, checked, toDos, setToDo, id}) =>{
     }
 
     return(
-        <div className="item" id={id} >
+        <div className="item flex" id={id} >
         <label className="checkbox">
         <input
         className="checkbox-round"

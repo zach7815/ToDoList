@@ -19,7 +19,10 @@ useDarkMode(darkMode)
          className='.icon'
          onClick={(e)=>{
             e.preventDefault();
-            darkMode === false ? setDarkMode(true) : setDarkMode(false)}}>
+            darkMode === false ? setDarkMode(true) : setDarkMode(false)}}
+
+
+            >
         {darkMode===false?<ReactLogoMoon/>:<ReactLogoSun/>}
         </a>
         </div>
