@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ReactComponent as ReactLogoMoon} from '../images/icon-moon.svg';
 import {ReactComponent as ReactLogoSun} from '../images/icon-sun.svg';
 import TaskInput from './TaskInput';
@@ -6,10 +6,10 @@ import useDarkMode from '../useDarkMode';
 
 
 
-const Header = ({inputText, setInputText, data, updateData})=>{
-const [darkMode, setDarkMode]=useState(false)
+const Header = ({inputText, setInputText, data,
+updateData, darkMode, setDarkMode})=>{
 
-useDarkMode(darkMode)
+useDarkMode(darkMode);
 
     return (
         <div className="header">

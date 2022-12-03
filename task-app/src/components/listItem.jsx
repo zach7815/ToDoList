@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
 
-const ListItem = ({itemText, toDo, checked, toDos, setToDo, id}) =>{
+const ListItem = ({itemText, toDo, checked,
+    toDos, setToDo, id, darkMode
+
+}) =>{
     const defaultChecked=checked?checked:false;
     const [isChecked, setIsChecked]=useState(defaultChecked);
 
@@ -25,7 +28,7 @@ const ListItem = ({itemText, toDo, checked, toDos, setToDo, id}) =>{
     }
 
     return(
-        <div className="item flex" id={id} >
+        <div className={`item flex ${darkMode===true?'darkmodeContent':''}` } id={id} >
         <label className="checkbox">
         <input
         className="checkbox-round"

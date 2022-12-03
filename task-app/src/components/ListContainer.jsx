@@ -5,7 +5,9 @@ import DesktopFilters from "./DesktopFilters";
 
 
 
-const ListContainer = ({toDo,setToDo, setStatus, filteredTodos})=>{
+const ListContainer = ({toDo,setToDo, setStatus,
+    filteredTodos, darkMode,
+    setDarkMode})=>{
     return(
         <div className="listContent">
 
@@ -19,6 +21,7 @@ const ListContainer = ({toDo,setToDo, setStatus, filteredTodos})=>{
                 toDo={item}
                 toDos={toDo}
                setToDo={setToDo}
+               darkMode={darkMode}
                 />
             )
         })

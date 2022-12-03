@@ -10,6 +10,8 @@ import ToggleState from './components/ToggleState';
 function App() {
   const [inputText, setInputText]=useState("");
   const [toDoList,setToDoList]= useState([]);
+  const [darkMode, setDarkMode]=useState(false);
+
   const [status, setStatus]=useState("All")
   const [filteredTodos, setFilteredTodos]= useState([])
 
@@ -49,8 +51,22 @@ function App() {
 
   return (
     <div className="App">
-<Header inputText={inputText} setInputText={setInputText} data={toDoList} updateData={setToDoList}/>
-<ListContainer toDo={toDoList} filteredTodos={filteredTodos} setToDo={setToDoList}  setStatus={setStatus}/>
+<Header
+inputText={inputText}
+setInputText={setInputText}
+data={toDoList}
+updateData={setToDoList}
+darkMode={darkMode}
+setDarkMode={setDarkMode}
+
+/>
+<ListContainer toDo={toDoList}
+filteredTodos={filteredTodos}
+ setToDo={setToDoList}
+ setStatus={setStatus}
+ darkMode={darkMode}
+setDarkMode={setDarkMode}
+ />
 <ToggleState   setStatus={setStatus}/>
 
 
