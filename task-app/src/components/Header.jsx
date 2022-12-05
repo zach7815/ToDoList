@@ -1,32 +1,44 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ReactComponent as ReactLogoMoon} from '../images/icon-moon.svg';
 import {ReactComponent as ReactLogoSun} from '../images/icon-sun.svg';
-import useDarkMode from '../useDarkMode';
+import TaskInput from './TaskInput';
 
 
 
-const Header = ()=>{
-const [darkMode, setDarkMode]=useState(false);
-useDarkMode(darkMode)
+
+const Header = ({inputText, setInputText, data,
+updateData, darkMode, setDarkMode, setBackground, bgImage, desktopLight, desktopDark})=>{
+
+    const toggleDarkmode=(e)=>{
+        e.preventDefault();
+        if (darkMode===false){
+            setDarkMode(true)
+            setBackground(desktopDark)
+        }
+        else{
+            setDarkMode(false)
+            setBackground(desktopLight)
+        }
+    }
 
     return (
-        <div className="header">
+        <div className="header" style={bgImage}>
         <div className='heading'>
         <h1>to do</h1>
-        <a href='null'
-         className='.icon'
-         onClick={(e)=>{
-            e.preventDefault();
-            darkMode === false ? setDarkMode(true) : setDarkMode(false)
-            }}
-         >
 
-        {darkMode===false?<ReactLogoMoon/>:<ReactLogoSun/>}
+        <a href='null' label=" Toggle DarkMode button" aria-label='Toggle Dark Mode'
+         className='.icon'
+         onClick={(e)=>{toggleDarkmode(e)}}>
+        {darkMode===false?<ReactLogoMoon aria-label="Moon icon to switch to darkmode"/>:<ReactLogoSun aria-label="Moon icon to switch to lightmode"/>}
         </a>
+
         </div>
-        <div className='inputWrap'>
-        <input className='itemInput' type="text" placeholder="Create a new todo..." maxLength="50"/>
-        </div>
+            <TaskInput inputText={inputText}
+            setInputText={setInputText}
+             newItem={data}
+             setNewItem={updateData}
+             darkMode={darkMode}
+             />
         </div>
     )
 }

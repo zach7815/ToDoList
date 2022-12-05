@@ -1,15 +1,33 @@
 import React from "react";
+import { filterList } from "../ToDoFuncts";
+import { Count } from "./Count";
 
-const DesktopFilters=()=>{
+const DesktopFilters=({toDo, setStatus, clearFunct})=>{
+if(toDo.length===0){
+    return
+}
+else{
     return(
-        <div className="deskToggle">
-        <span> 5 items left</span>
-        <span className="filterBtn">All</span>
-        <span className="filterBtn">Active</span>
-        <span className="filterBtn">Completed</span>
-        <span className="clearBtn">Clear Completed</span>
+        <div className="deskToggle flex">
+        <Count toDo={toDo}/>
+        <span className="filterBtn"
+        onClick={ (e)=>{filterList(e, setStatus)}}
+        >All</span>
+        <span className="filterBtn"
+        onClick={ (e)=>{filterList(e, setStatus)}}
+        >
+        Active</span>
+        <span className="filterBtn"
+        onClick={ (e)=>{filterList(e, setStatus)}}>
+        Completed
+        </span>
+        <span className="clearBtn"
+        onClick={clearFunct}
+        >Clear Completed</span>
         </div>
     )
+}
+
 }
 
 export default DesktopFilters
