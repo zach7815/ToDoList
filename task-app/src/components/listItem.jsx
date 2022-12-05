@@ -28,7 +28,7 @@ const ListItem = ({itemText, toDo, checked,
     }
 
     return(
-        <div className={`item flex ${darkMode===true?'darkmodeContent':''}` } id={id} >
+        <div className={`item flex ${darkMode===true?'darkmodeContent darkBorder':'lightmodeContent lightBorder'}` } id={id} >
         <label className="checkbox">
         <input
         className="checkbox-round"

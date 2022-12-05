@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TaskInput= ({inputText, setInputText, newItem, setNewItem})=>{
+const TaskInput= ({inputText, setInputText, newItem, setNewItem, darkMode})=>{
 
  const inputTextHandler = (e)=>{
     setInputText(e.target.value);
@@ -22,14 +22,18 @@ const handleSubmit= (e)=>{
 
 
     return (
-        <form   onSubmit={handleSubmit} className='inputWrap'>
+        <form   onSubmit={handleSubmit} className="inputWrap">
+        {/* <label className="inputWrap"> write a task */}
         <input
-         className='itemInput'
+         className={`itemInput ${darkMode===true?'darkmodeContent':'lightmodeContent'}`}
          value={inputText}
          onChange={inputTextHandler}
           type="text"
           placeholder="Create a new todo..."
-          maxLength="50"/>
+          maxLength="50"
+            label="write a "
+          />
+          {/* </label> */}
         </form>
     )
 }

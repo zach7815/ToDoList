@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Attribution from './components/Attribution';
 import ListContainer from './components/ListContainer';
 import ToggleState from './components/ToggleState';
+import desktopLight from './images/bg-desktop-light.jpg'
+import desktopDark from './images/bg-desktop-dark.jpg'
 
 
 
@@ -11,14 +13,17 @@ function App() {
   const [inputText, setInputText]=useState("");
   const [toDoList,setToDoList]= useState([]);
   const [darkMode, setDarkMode]=useState(false);
-
   const [status, setStatus]=useState("All")
   const [filteredTodos, setFilteredTodos]= useState([])
+  const [background,setBackground]= useState(desktopLight);
 
+  const bgImage = {
+    backgroundImage:`url(${background})`
+  };
 
-
-
-
+  const clearCompleted= ()=>{
+    setToDoList(toDoList.filter(item=> item.complete===false))
+}
 
   useEffect(()=>{
     const filterHandler = ()=>{
@@ -50,7 +55,7 @@ function App() {
      }, [toDoList,status, setToDoList])
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode===true?'darkModeBody':'lightmodeContent'}`}>
 <Header
 inputText={inputText}
 setInputText={setInputText}
@@ -58,6 +63,12 @@ data={toDoList}
 updateData={setToDoList}
 darkMode={darkMode}
 setDarkMode={setDarkMode}
+background={background}
+setBackground={setBackground}
+bgImage={bgImage}
+desktopLight={desktopLight}
+desktopDark={desktopDark}
+desk
 
 />
 <ListContainer toDo={toDoList}
@@ -65,12 +76,12 @@ filteredTodos={filteredTodos}
  setToDo={setToDoList}
  setStatus={setStatus}
  darkMode={darkMode}
-setDarkMode={setDarkMode}
+clearFunct={clearCompleted}
  />
-<ToggleState   setStatus={setStatus}/>
+<ToggleState   setStatus={setStatus} darkMode={darkMode}/>
 
 
-<Attribution/>
+<Attribution darkMode={darkMode}/>
     </div>
   );
 }

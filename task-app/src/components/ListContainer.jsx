@@ -7,9 +7,9 @@ import DesktopFilters from "./DesktopFilters";
 
 const ListContainer = ({toDo,setToDo, setStatus,
     filteredTodos, darkMode,
-    setDarkMode})=>{
+   clearFunct})=>{
     return(
-        <div className="listContent">
+        <div className={`listContent ${darkMode===true?'darkmodeContent':'lightmodeContent'}`}>
 
         {filteredTodos.map(item=>{
             return(
@@ -26,12 +26,19 @@ const ListContainer = ({toDo,setToDo, setStatus,
             )
         })
         }
-        <ItemCount/>
+        <ItemCount
+         toDo={toDo}
 
-        <DesktopFilters toDo={toDo}
-         setToDo={setToDo}
-         setStatus={setStatus}
          filteredTodos={filteredTodos}
+         clearFunct={clearFunct}
+
+        />
+
+        <DesktopFilters
+        toDo={toDo}
+         filteredTodos={filteredTodos}
+         setStatus={setStatus}
+         clearFunct={clearFunct}
          />
 
         </div>
