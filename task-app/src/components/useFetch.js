@@ -6,9 +6,9 @@ export const UseFetch = (api, method, data)=>{
         method:method,
         mode:'cors',
        headers:{"Content-Type": "application/json"},
-        body: JSON.stringify(data)
+        body: JSON.stringify(data)||""
      }
-console.log(data)
+
 
      fetch(api, requestOptions)
 

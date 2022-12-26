@@ -29,7 +29,7 @@ const ListItem = ({itemText, toDo, checked,
 
       }))
 
-      console.log(toDo)
+      UseFetch("/api/completeOne", "PUT", toDo)
     }
 
     return(

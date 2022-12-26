@@ -6,6 +6,7 @@ import ListContainer from './components/ListContainer';
 import ToggleState from './components/ToggleState';
 import desktopLight from './images/bg-desktop-light.jpg'
 import desktopDark from './images/bg-desktop-dark.jpg'
+import { UseFetch } from './components/useFetch';
 
 
 
@@ -23,6 +24,7 @@ function App() {
 
   const clearCompleted= ()=>{
     setToDoList(toDoList.filter(item=> item.complete===false))
+    UseFetch("/api/deleteComplete", "DELETE")
 }
 
   useEffect(()=>{
