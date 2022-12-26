@@ -56,11 +56,39 @@ app.get("/", (req,res)=>{
 
 
     app.delete("/api/deleteComplete", (req,res)=>{
-        console.log(req.body);
+        try{
+            dummyDB.map((item, index)=>{
+                if(item.complete===true){
+                   dummyDB.splice(index, 1)
+                }
+            })
+            console.log(dummyDB)
+        }
+
+        catch(error){
+            console.log(error)
+        }
+    })
+
+    app.put("/api/completeOne", (req,res)=>{
+       const completeOneID= req.body.id;
+       try{
+        dummyDB.map((item,index)=>{
+            if (completeOneID===item.id){
+                dummyDB[index].complete=!req.body.complete;
+            }
+        })
+
+
+       }
+       catch(error){
+            console.log(error);
+       }
     })
 
 
     app.post("/api/addOne", (req,res)=>{
+
        try{
         dummyDB.push(req.body);
        }
