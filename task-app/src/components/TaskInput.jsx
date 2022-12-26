@@ -1,4 +1,5 @@
 import React from 'react';
+import { UseFetch } from './useFetch';
 
 const TaskInput= ({inputText, setInputText, newItem, setNewItem, darkMode})=>{
 
@@ -8,16 +9,18 @@ const TaskInput= ({inputText, setInputText, newItem, setNewItem, darkMode})=>{
 
 const handleSubmit= (e)=>{
 
+    const item =  {
+        id:Math.random()*1000,
+        text:inputText,
+        complete:false
+    }
 
     e.preventDefault()
-    setNewItem([...newItem,
-        {
-            id:Math.random()*1000,
-            text:inputText,
-            complete:false
-        }
+    setNewItem([...newItem,item
+
     ])
     setInputText('')
+    UseFetch("/api/addOne", "POST", item)
 }
 
 
