@@ -9,7 +9,9 @@ export const UseFetch = (api, method, data)=>{
         body: JSON.stringify(data)||""
      }
 
+    fetch(api, requestOptions)
 
-     fetch(api, requestOptions)
+
+
 
 }

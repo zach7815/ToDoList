@@ -12,7 +12,7 @@ import { UseFetch } from './components/useFetch';
 
 function App() {
   const [inputText, setInputText]=useState("");
-  const [toDoList,setToDoList]= useState([]);
+  const [toDoList,setToDoList]= useState([{id:1, text:"write a todo", complete:false}]);
   const [darkMode, setDarkMode]=useState(false);
   const [status, setStatus]=useState("All")
   const [filteredTodos, setFilteredTodos]= useState([])
@@ -55,6 +55,18 @@ function App() {
     }
     filterHandler();
      }, [toDoList,status, setToDoList])
+
+
+     useEffect(()=>{
+
+        const getData= async ()=>{
+          const response= await fetch("/api/loadtoDos");
+          const result = await response.json();
+          console.log(result)
+          setToDoList(result)
+        }
+        getData()
+     },[toDoList])
 
   return (
     <div className={`App ${darkMode===true?'darkModeBody':'lightmodeContent'}`}>
