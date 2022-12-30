@@ -1,6 +1,10 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
 import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import toDo from "./toDo.mjs";
+
+const connectionString= process.env.CONNECTION_STRING;
 
 
 
@@ -22,7 +26,7 @@ const PORT = process.env.PORT || 8000;
 
 main().catch(err => console.log(err));
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/toDo',
+    await mongoose.connect(connectionString,
     ()=>{ console.log("MongoDB connected");},
     (e)=>{console.log({error:e.message})}
     );
