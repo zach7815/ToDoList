@@ -19,7 +19,6 @@ app.use(function (req, res, next) {
 
 const PORT = process.env.PORT || 8000;
 
-const dummyDB =[];
 
 main().catch(err => console.log(err));
 async function main() {
@@ -51,29 +50,15 @@ app.get("/api/loadtoDos",  async (req,res)=>{
 });
 
 
-    app.delete("/api/deleteOne", (req,res)=>{
+    app.delete("/api/deleteOne", async (req,res)=>{
         const deletedId =req.body.id;
-        console.log(deletedId)
-
         try{
-            dummyDB.map((item,index)=>{
-                if(item.id===deletedId){
-                dummyDB.splice(index,1);
-            }
-            else{
-                return
-            }
-        })
-
+            await toDo.deleteOne({id:deletedId})
 
         }
         catch(error){
                 console.log(error)
         }
-        finally{
-            console.log(dummyDB)
-        }
-
 
 
 
@@ -81,14 +66,11 @@ app.get("/api/loadtoDos",  async (req,res)=>{
     })
 
 
-    app.delete("/api/deleteComplete", (req,res)=>{
+    app.delete("/api/deleteComplete", async (req,res)=>{
         try{
-            dummyDB.map((item, index)=>{
-                if(item.complete===true){
-                   dummyDB.splice(index, 1)
-                }
-            })
-            console.log(dummyDB)
+           await toDo.deleteMany({complete:true});
+
+            const toDos = await toDo.find();
         }
 
         catch(error){
@@ -96,16 +78,10 @@ app.get("/api/loadtoDos",  async (req,res)=>{
         }
     })
 
-    app.put("/api/completeOne", (req,res)=>{
+    app.put("/api/completeOne", async (req,res)=>{
        const completeOneID= req.body.id;
        try{
-        dummyDB.map((item,index)=>{
-            if (completeOneID===item.id){
-                dummyDB[index].complete=!req.body.complete;
-            }
-        })
-
-
+            await toDo.findOneAndUpdate({id:completeOneID}, [{$set:{complete:{$eq:[false,"$complete"]}}}] )
        }
        catch(error){
             console.log(error);
@@ -121,7 +97,7 @@ app.get("/api/loadtoDos",  async (req,res)=>{
             text: req.body.text,
             complete:req.body.complete
         })
-        await todo.save().then(console.log("toDo saved"));
+        await todo.save()
        }
        catch(e){
         console.log(Error(e.message));
