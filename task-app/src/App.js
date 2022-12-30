@@ -62,7 +62,6 @@ function App() {
         const getData= async ()=>{
           const response= await fetch("/api/loadtoDos");
           const result = await response.json();
-          console.log(result)
           setToDoList(result)
         }
         getData()

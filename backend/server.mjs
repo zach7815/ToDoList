@@ -1,17 +1,14 @@
 import express, { urlencoded } from "express";
+import mongoose from "mongoose";
+import toDo from "./toDo.mjs";
+
+
+
 const app = express();
 
 app.use(urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json({limit:'1mb'}));
-app.use(express.json());
-
-
-const PORT = process.env.PORT || 8000;
-
-const dummyDB =[];
-
-
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000/");
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -20,34 +17,48 @@ app.use(function (req, res, next) {
     next();
     });
 
+const PORT = process.env.PORT || 8000;
+
+
+main().catch(err => console.log(err));
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/toDo',
+    ()=>{ console.log("MongoDB connected");},
+    (e)=>{console.log({error:e.message})}
+    );
+  };
+
+
+
+
+
 app.get("/", (req,res)=>{
     res.send("This is a backend route please go localHost: 3000");
 })
 
+app.get("/api/loadtoDos",  async (req,res)=>{
+    try{
+       const toDos = await toDo.find();
+        const toDoList= JSON.stringify(toDos);
+       res.send(toDoList);
+    }
 
-    app.delete("/api/deleteOne", (req,res)=>{
+        catch(error){
+            console.log(error)
+        }
+
+});
+
+
+    app.delete("/api/deleteOne", async (req,res)=>{
         const deletedId =req.body.id;
-        console.log(deletedId)
-
         try{
-            dummyDB.map((item,index)=>{
-                if(item.id===deletedId){
-                dummyDB.splice(index,1);
-            }
-            else{
-                return
-            }
-        })
-
+            await toDo.deleteOne({id:deletedId})
 
         }
         catch(error){
                 console.log(error)
         }
-        finally{
-            console.log(dummyDB)
-        }
-
 
 
 
@@ -55,14 +66,11 @@ app.get("/", (req,res)=>{
     })
 
 
-    app.delete("/api/deleteComplete", (req,res)=>{
+    app.delete("/api/deleteComplete", async (req,res)=>{
         try{
-            dummyDB.map((item, index)=>{
-                if(item.complete===true){
-                   dummyDB.splice(index, 1)
-                }
-            })
-            console.log(dummyDB)
+           await toDo.deleteMany({complete:true});
+
+            const toDos = await toDo.find();
         }
 
         catch(error){
@@ -70,16 +78,10 @@ app.get("/", (req,res)=>{
         }
     })
 
-    app.put("/api/completeOne", (req,res)=>{
+    app.put("/api/completeOne", async (req,res)=>{
        const completeOneID= req.body.id;
        try{
-        dummyDB.map((item,index)=>{
-            if (completeOneID===item.id){
-                dummyDB[index].complete=!req.body.complete;
-            }
-        })
-
-
+            await toDo.findOneAndUpdate({id:completeOneID}, [{$set:{complete:{$eq:[false,"$complete"]}}}] )
        }
        catch(error){
             console.log(error);
@@ -87,10 +89,15 @@ app.get("/", (req,res)=>{
     })
 
 
-    app.post("/api/addOne", (req,res)=>{
+    app.post("/api/addOne",  async (req,res)=>{
 
        try{
-        dummyDB.push(req.body);
+     const todo=  await toDo.create({
+            id:req.body.id,
+            text: req.body.text,
+            complete:req.body.complete
+        })
+        await todo.save()
        }
        catch(e){
         console.log(Error(e.message));
