@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { UseFetch } from "./useFetch";
 
 
 const ListItem = ({itemText, toDo, checked,
@@ -12,6 +13,8 @@ const ListItem = ({itemText, toDo, checked,
         e.preventDefault()
 
        setToDo(toDos.filter(el=>el.id!==toDo.id))
+
+        UseFetch("/api/deleteOne", "DELETE", toDo)
     }
 
     const toggleComplete= ()=>{
@@ -25,6 +28,8 @@ const ListItem = ({itemText, toDo, checked,
         return item
 
       }))
+
+      UseFetch("/api/completeOne", "PUT", toDo)
     }
 
     return(
