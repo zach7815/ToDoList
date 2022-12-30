@@ -248,7 +248,7 @@ background-size: cover;
 .Toggles{
   display: flex;
   justify-content: space-around;
-  width: 68%;
+  width: 71%;
   box-shadow: 0px 2px 10px 0 black;
   border-radius: 5px;
   padding: 1rem;
@@ -263,7 +263,7 @@ background-size: cover;
 }
 
 .deskToggle{
-display: none;
+display: none!important;
 justify-content: space-around;
 padding: 1rem 0 1rem 1.5rem;
 width: fit-content;
@@ -325,7 +325,7 @@ z-index: 5;
   }
 
   .deskToggle{
-    display: flex;
+    display: flex!important;
   }
 
 
