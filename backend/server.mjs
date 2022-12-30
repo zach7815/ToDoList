@@ -1,17 +1,14 @@
 import express, { urlencoded } from "express";
+import mongoose from "mongoose";
+import toDo from "./toDo.mjs";
+
+
+
 const app = express();
 
 app.use(urlencoded({extended:true}));
 app.use(express.static('public'));
 app.use(express.json({limit:'1mb'}));
-app.use(express.json());
-
-
-const PORT = process.env.PORT || 8000;
-
-const dummyDB =[];
-
-
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', "http://localhost:3000/");
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -20,9 +17,38 @@ app.use(function (req, res, next) {
     next();
     });
 
+const PORT = process.env.PORT || 8000;
+
+const dummyDB =[];
+
+main().catch(err => console.log(err));
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/toDo',
+    ()=>{ console.log("MongoDB connected");},
+    (e)=>{console.log({error:e.message})}
+    );
+  };
+
+
+
+
+
 app.get("/", (req,res)=>{
     res.send("This is a backend route please go localHost: 3000");
 })
+
+app.get("/api/loadtoDos",  async (req,res)=>{
+    try{
+       const toDos = await toDo.find();
+        const toDoList= JSON.stringify(toDos);
+       res.send(toDoList);
+    }
+
+        catch(error){
+            console.log(error)
+        }
+
+});
 
 
     app.delete("/api/deleteOne", (req,res)=>{
@@ -87,10 +113,15 @@ app.get("/", (req,res)=>{
     })
 
 
-    app.post("/api/addOne", (req,res)=>{
+    app.post("/api/addOne",  async (req,res)=>{
 
        try{
-        dummyDB.push(req.body);
+     const todo=  await toDo.create({
+            id:req.body.id,
+            text: req.body.text,
+            complete:req.body.complete
+        })
+        await todo.save().then(console.log("toDo saved"));
        }
        catch(e){
         console.log(Error(e.message));
