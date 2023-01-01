@@ -16,9 +16,9 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
+This is a full stack fully hosted toDo app that uses MongoDB as a database, react for a front end with node and express js for the backend.
 
 ### The challenge
 
@@ -43,11 +43,13 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- The Live Site [Live site](https://todo-app-frontend-obe0.onrender.com/)
+- The front end respository used for hosting [github.com/zach7815/toDoList_backend](https://github.com/zach7815/toDo_list_frontend/)
+- The back end respository used for hosting [github.com/zach7815/toDoList_backend](https://github.com/zach7815/toDolist_backend/)
+
 
 ## My process
-
+I started the project by focussing on the front end, namely the mobile design and the SASS styling. I then focussed on getting the functionality to work. Then I moved onto the back end and working with Mongo DB.
 ### Built with
 
 - Semantic HTML5 markup
@@ -55,59 +57,65 @@ Users should be able to:
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- [React](https://reactjs.org/)
+- [Sass](https://sass-lang.com/)
+- MongoDB
+- Mongoose
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+In this project I practised and improved my understanding of React, React hooks. I also learnt how to use Sass. In addition I revisited and learnt the basics of MongoDB. Finally I learnt how to host a full stack site with a database for free.
 
 To see how you can add code snippets, see below:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
+
+```Sass
+@mixin circle(
+$border-color:$dayLightGrayBlue,
+$inputCircle:false
+) {
+  border-color: $border-color;
+  height: 1.5em;
+  width: 1.5em;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50%;
+
+
+  @if $inputCircle {
+    position:absolute;
+  top:4.85rem;
+  left:3rem;
+  }
+  @else{
+    position: initial;
+  cursor: pointer;
+  }
+
 }
 ```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+ <div className={`listContent ${darkMode===true?'darkmodeContent':'lightmodeContent'}`}>
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+I originally implemented the dark mode by having an custom react hook that used loads of class list toggles and was not very effective, it also didn't fully work with changing the images. I then found this method that allowed me to use state to more effectively change the background images  without errors.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+
+
 
 ### Continued development
+Having done one full stack app, I am hoping to take on something more challenging. I am thinking of doing a version of a language learning app, namely a sentence re ordering app. As I have been learning chinese for a while so it will combine both my two passions. Though with the new app I am thinking of adding a 3rd person login as a feature and learning how to build a dashboard to record peoples progress.
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [MongoDB connection Error](https://masteringjs.io/tutorials/mongoose/buffering-timed-out-after-10000ms) - One of my last problems was trying to get the live hosted back end to successfully connect with Mongo Atlas. I kept running into a Mongo connection timeout and my database wouldn't load.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [CORS connection problem](https://www.stackhawk.com/blog/nodejs-cors-guide-what-it-is-and-how-to-enable-it/) - This is the second full stack project I have hosted and I have learnt how fun Cors is in trying to get two different domains to communicate and not be blocked by CORS. This article helped me troubleshoot what the problem was and get the site to work.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Zach](https://zachkb.dev/)
+- - [@zach7815](https://www.frontendmentor.io/profile/zach7815)
